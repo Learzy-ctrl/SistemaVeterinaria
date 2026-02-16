@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:9005/'
+  apiUrl: 'https://apigateway-sistemaveterinaria.onrender.com/'
 };

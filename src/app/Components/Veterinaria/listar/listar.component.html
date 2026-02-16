@@ -1,1 +1,42 @@
-<p>listar works!</p>
+<div class="container mt-4">
+  <h2 class="mb-4">Listado de Veterinarias</h2>
+  
+  <div class="d-flex justify-content-end mb-3">
+  <button class="btn btn-success" (click)="agregar()">
+    + Agregar Veterinaria
+  </button>
+</div>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered align-middle text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Dirección</th>
+          <th>Teléfono</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vet of veterinarias">
+          <td>{{ vet.idVeterinaria }}</td>
+          <td>{{ vet.nombre }}</td>
+          <td>{{ vet.direccion }}</td>
+          <td>{{ vet.telefono }}</td>
+          <td>
+            <button class="btn btn-sm btn-primary me-1" (click)="editar(vet.idVeterinaria)">
+              <i class="bi bi-pencil-square"></i> Editar
+            </button>
+            <button class="btn btn-sm btn-danger me-1" (click)="eliminar(vet.idVeterinaria)">
+              <i class="bi bi-trash3-fill"></i> Eliminar
+            </button>
+            <button class="btn btn-sm btn-info text-white" (click)="verResponsables(vet)">
+              <i class="bi bi-people-fill"></i> Ver responsables
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

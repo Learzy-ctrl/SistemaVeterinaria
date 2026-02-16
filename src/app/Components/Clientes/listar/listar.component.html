@@ -1,1 +1,42 @@
-<p>listar works!</p>
+<div class="container mt-4">
+  <h2 class="mb-4">Listado de Clientes</h2>
+  
+  <div class="d-flex justify-content-end mb-3">
+  <button class="btn btn-success" (click)="agregar()">
+    + Agregar Cliente
+  </button>
+</div>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered align-middle text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Contacto</th>
+          <th>Direccion</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of clientes">
+          <td>{{ c.idCliente }}</td>
+          <td>{{ c.nombre }}</td>
+          <td>{{ c.contacto }}</td>
+          <td>{{ c.direccion }}</td>
+          <td>
+            <button class="btn btn-sm btn-primary me-1" (click)="editar(c.idCliente)">
+              <i class="bi bi-pencil-square"></i> Editar
+            </button>
+            <button class="btn btn-sm btn-danger me-1" (click)="eliminar(c.idCliente)">
+              <i class="bi bi-trash3-fill"></i> Eliminar
+            </button>
+            <button class="btn btn-sm btn-info text-white" (click)="verMascotas(c)">
+              <i class="fas fa-paw"></i> Ver mascotas
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -11,7 +11,7 @@ import { Mascota } from '../../Model/Mascota';
 export class ClienteServiceService {
   http = inject(HttpClient);
   url: string = environment.apiUrl + 'clientes/';
-
+  
   agregar(c: Cliente) {
     return this.http.post<Respuesta>(this.url + 'agregar', c);
   }

@@ -1,1 +1,48 @@
-<p>listar works!</p>
+<div class="container mt-4">
+  <h2 class="mb-4">Listado de Mascotas</h2>
+  
+  <div class="d-flex justify-content-end mb-3">
+  <button *ngIf="showTools" class="btn btn-success" (click)="agregar()">
+    + Agregar Mascota
+  </button>
+</div>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered align-middle text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Raza</th>
+          <th>Edad</th>
+          <th>Razon Cita</th>
+          <th>Cliente Id</th>
+          <th>Responsable Id</th>
+          <th *ngIf="showTools">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let m of mascotas">
+          <td>{{ m.idMascota }}</td>
+          <td>{{ m.nombre }}</td>
+          <td>{{ m.raza }}</td>
+          <td>{{ m.edad }}</td>
+          <td>{{ m.razonCita }}</td>
+          <td>{{ m.clienteId }}</td>
+          <td> {{ m.responsableId }}</td>
+          <td *ngIf="showTools">
+            <button class="btn btn-sm btn-primary me-1" (click)="editar(m.idMascota)">
+              <i class="bi bi-pencil-square"></i> Editar
+            </button>
+            <button class="btn btn-sm btn-danger me-1" (click)="eliminar(m.idMascota)">
+              <i class="bi bi-trash3-fill"></i> Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="showTools!=true" class="d-flex justify-content-end mb-3">
+    <button class="btn btn-secondary" (click)="cerrar()">Cerrar</button>
+  </div>
+</div>

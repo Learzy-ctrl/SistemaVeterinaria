@@ -1,1 +1,71 @@
-<p>agregar works!</p>
+<div class="container-fluid mt-4 px-4">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()" novalidate>
+
+        <!-- ID -->
+        <div class="mb-3">
+          <label for="idCliente" class="form-label">ID</label>
+          <input type="number" id="idCliente" class="form-control w-100"
+                 formControlName="idCliente"
+                 [class.is-invalid]="f['idCliente'].touched && f['idCliente'].invalid"
+                 [class.is-valid]="f['idCliente'].touched && f['idCliente'].valid">
+          <div *ngIf="f['idCliente'].touched && f['idCliente'].invalid" class="invalid-feedback">
+            <div *ngIf="f['idCliente'].errors?.['required']">ID requerido</div>
+            <div *ngIf="f['idCliente'].errors?.['min']">Debe ser mayor a 0</div>
+          </div>
+        </div>
+
+        <!-- Nombre -->
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text" id="nombre" class="form-control w-100"
+                 formControlName="nombre"
+                 [class.is-invalid]="f['nombre'].touched && f['nombre'].invalid"
+                 [class.is-valid]="f['nombre'].touched && f['nombre'].valid">
+          <div *ngIf="f['nombre'].touched && f['nombre'].invalid" class="invalid-feedback">
+            <div *ngIf="f['nombre'].errors?.['required']">Nombre requerido</div>
+            <div *ngIf="f['nombre'].errors?.['minlength']">Mínimo 3 caracteres</div>
+          </div>
+        </div>
+
+        <!-- Dirección -->
+        <div class="mb-3">
+          <label for="direccion" class="form-label">Dirección</label>
+          <input type="text" id="direccion" class="form-control w-100"
+                 formControlName="direccion"
+                 [class.is-invalid]="f['direccion'].touched && f['direccion'].invalid"
+                 [class.is-valid]="f['direccion'].touched && f['direccion'].valid">
+          <div *ngIf="f['direccion'].touched && f['direccion'].invalid" class="invalid-feedback">
+            Dirección requerida
+          </div>
+        </div>
+
+        <!-- contacto -->
+        <div class="mb-3">
+          <label for="contacto" class="form-label">Contacto</label>
+          <input type="tel" id="contacto" class="form-control w-100"
+                 formControlName="contacto"
+                 [class.is-invalid]="f['contacto'].touched && f['contacto'].invalid"
+                 [class.is-valid]="f['contacto'].touched && f['contacto'].valid">
+          <div *ngIf="f['contacto'].touched && f['contacto'].invalid" class="invalid-feedback">
+            <div *ngIf="f['contacto'].errors?.['required']">Teléfono requerido</div>
+            <div *ngIf="f['contacto'].errors?.['pattern']">Debe ser de 10 dígitos</div>
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="d-flex justify-content-end mt-4">
+          <button type="submit" class="btn btn-success" [disabled]="isLoading">
+            <span *ngIf="!isLoading"><i class="bi bi-save"></i> Guardar</span>
+            <span *ngIf="isLoading">
+              <span class="spinner-border spinner-border-sm" role="status"></span>
+              Guardando...
+            </span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

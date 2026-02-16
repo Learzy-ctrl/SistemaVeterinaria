@@ -1,1 +1,106 @@
-<p>agregar works!</p>
+<div class="container-fluid mt-4 px-4">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <form [formGroup]="mascotaForm" (ngSubmit)="onSubmit()" novalidate>
+
+        <!-- ID Mascota -->
+        <div class="mb-3">
+          <label for="idMascota" class="form-label">ID</label>
+          <input type="number" id="idMascota" class="form-control w-100" formControlName="idMascota"
+            [class.is-invalid]="f['idMascota'].touched && f['idMascota'].invalid"
+            [class.is-valid]="f['idMascota'].touched && f['idMascota'].valid">
+          <div *ngIf="f['idMascota'].touched && f['idMascota'].invalid" class="invalid-feedback">
+            <div *ngIf="f['idMascota'].errors?.['required']">ID requerido</div>
+            <div *ngIf="f['idMascota'].errors?.['min']">Debe ser mayor a 0</div>
+          </div>
+        </div>
+
+        <!-- Nombre -->
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text" id="nombre" class="form-control w-100" formControlName="nombre"
+            [class.is-invalid]="f['nombre'].touched && f['nombre'].invalid"
+            [class.is-valid]="f['nombre'].touched && f['nombre'].valid">
+          <div *ngIf="f['nombre'].touched && f['nombre'].invalid" class="invalid-feedback">
+            <div *ngIf="f['nombre'].errors?.['required']">Nombre requerido</div>
+            <div *ngIf="f['nombre'].errors?.['minlength']">Mínimo 2 caracteres</div>
+          </div>
+        </div>
+
+        <!-- Raza -->
+        <div class="mb-3">
+          <label for="raza" class="form-label">Raza</label>
+          <input type="text" id="raza" class="form-control w-100" formControlName="raza"
+            [class.is-invalid]="f['raza'].touched && f['raza'].invalid"
+            [class.is-valid]="f['raza'].touched && f['raza'].valid">
+          <div *ngIf="f['raza'].touched && f['raza'].invalid" class="invalid-feedback">
+            Raza requerida
+          </div>
+        </div>
+
+        <!-- Edad -->
+        <div class="mb-3">
+          <label for="edad" class="form-label">Edad</label>
+          <input type="number" id="edad" class="form-control w-100" formControlName="edad"
+            [class.is-invalid]="f['edad'].touched && f['edad'].invalid"
+            [class.is-valid]="f['edad'].touched && f['edad'].valid">
+          <div *ngIf="f['edad'].touched && f['edad'].invalid" class="invalid-feedback">
+            <div *ngIf="f['edad'].errors?.['required']">Edad requerida</div>
+            <div *ngIf="f['edad'].errors?.['min']">Edad no válida</div>
+          </div>
+        </div>
+
+        <!-- Razón de la cita -->
+        <div class="mb-3">
+          <label for="razonCita" class="form-label">Razón de la cita</label>
+          <textarea id="razonCita" class="form-control w-100" formControlName="razonCita"
+            [class.is-invalid]="f['razonCita'].touched && f['razonCita'].invalid"
+            [class.is-valid]="f['razonCita'].touched && f['razonCita'].valid"></textarea>
+          <div *ngIf="f['razonCita'].touched && f['razonCita'].invalid" class="invalid-feedback">
+            Razón requerida
+          </div>
+        </div>
+
+        <!-- Cliente -->
+        <div class="mb-3">
+          <label for="clienteId" class="form-label">Cliente</label>
+          <select id="clienteId" class="form-select" formControlName="clienteId"
+            [class.is-invalid]="f['clienteId'].touched && f['clienteId'].invalid"
+            [class.is-valid]="f['clienteId'].touched && f['clienteId'].valid">
+            <option value="" disabled selected>Seleccione un cliente</option>
+            <option *ngFor="let c of clientes" [value]="c.idCliente">{{ c.nombre }}</option>
+          </select>
+          <div *ngIf="f['clienteId'].touched && f['clienteId'].invalid" class="invalid-feedback">
+            Cliente requerido
+          </div>
+        </div>
+
+        <!-- Responsable -->
+        <div class="mb-3">
+          <label for="responsableId" class="form-label">Responsable</label>
+          <select id="responsableId" class="form-select" formControlName="responsableId"
+            [class.is-invalid]="f['responsableId'].touched && f['responsableId'].invalid"
+            [class.is-valid]="f['responsableId'].touched && f['responsableId'].valid">
+            <option value="" disabled selected>Seleccione un responsable</option>
+            <option *ngFor="let r of responsables" [value]="r.idResponsable">{{ r.nombre }}</option>
+          </select>
+          <div *ngIf="f['responsableId'].touched && f['responsableId'].invalid" class="invalid-feedback">
+            Responsable requerido
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="d-flex justify-content-end mt-4">
+          <button type="submit" class="btn btn-success" [disabled]="isLoading">
+            <span *ngIf="!isLoading"><i class="bi bi-save"></i> Guardar</span>
+            <span *ngIf="isLoading">
+              <span class="spinner-border spinner-border-sm" role="status"></span>
+              Guardando...
+            </span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

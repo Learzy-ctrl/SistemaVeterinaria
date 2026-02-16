@@ -1,0 +1,11 @@
+.table th, .table td {
+  vertical-align: middle;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+button i {
+  margin-right: 4px;
+}

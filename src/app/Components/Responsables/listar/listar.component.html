@@ -1,1 +1,45 @@
-<p>listar works!</p>
+<div class="container mt-4">
+  <h2 class="mb-4">Listado de Responsables</h2>
+
+  <div class="d-flex justify-content-end mb-3">
+    <button *ngIf="isFromVeterinaria" class="btn btn-success" (click)="agregar()">
+      + Agregar Responsable
+    </button>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered align-middle text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Contacto</th>
+          <th>Veterinaria Id</th>
+          <th *ngIf="isFromVeterinaria">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of responsables">
+          <td>{{ r.idResponsable }}</td>
+          <td>{{ r.nombre }}</td>
+          <td>{{ r.contacto }}</td>
+          <td>{{ r.veterinariaId }}</td>
+          <td *ngIf="isFromVeterinaria">
+            <button class="btn btn-sm btn-primary me-1" (click)="editar(r.idResponsable)">
+              <i class="bi bi-pencil-square"></i> Editar
+            </button>
+            <button class="btn btn-sm btn-danger me-1" (click)="eliminar(r.idResponsable)">
+              <i class="bi bi-trash3-fill"></i> Eliminar
+            </button>
+            <button class="btn btn-sm btn-info text-white" (click)="verMascotas(r)">
+              <i class="fas fa-paw"></i> Ver mascotas
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="isFromVeterinaria!=true" class="d-flex justify-content-end mb-3">
+    <button class="btn btn-secondary" (click)="cerrar()">Cerrar</button>
+  </div>
+</div>
